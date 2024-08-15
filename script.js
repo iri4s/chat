@@ -3,7 +3,6 @@ const CLIENT_ID = 'Vm623MjURe1NZAP6';
 const drone = new ScaleDrone(CLIENT_ID, {
   data: { // Will be sent out as clientData via events
     name: getUsername(),
-    color: getColorWhite(),
   },
 });
 usernameinthechatvar = getUsername();
@@ -77,16 +76,10 @@ function getUsername() {
 }
  
 
-function getColorWhite() {
-  return '#' + 0xFFFFFF.toString(16); //Not sure why i made a whole function to get the color white.
-}
-
-
 //------------- DOM STUFF
 
 const DOM = {
-  membersCount: document.querySelector('.members-count'),
-  membersList: document.querySelector('.members-list'),
+  membersCountList: document.querySelector('.members-count-list'),
   messages: document.querySelector('.messages'),
   input: document.querySelector('.message-form__input'),
   form: document.querySelector('.message-form'),
@@ -113,15 +106,13 @@ function createMemberElement(member) {
   const el = document.createElement('div');
   el.appendChild(document.createTextNode(name));
   el.className = 'member';
-  el.style.color = color;
   return el;
 }
 
 function updateMembersDOM() {
-  DOM.membersCount.innerText = `LOSA-3 Chatroom. There are currently ${members.length} users in room.`;
-  DOM.membersList.innerHTML = '';
+  DOM.membersCountList.innerText = `LOSA-3 Chatroom. There are currently ${members.length} users in room.`;
   members.forEach(member =>
-    DOM.membersList.appendChild(createMemberElement(member))
+    DOM.membersCountList.appendChild(createMemberElement(member))
   );
 }
 
